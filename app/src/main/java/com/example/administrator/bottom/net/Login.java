@@ -17,10 +17,12 @@ public class Login {
                     switch (obj.getInt(Config.KEY_STATUS)) {
                         case Config.RESULT_STATUS_SUCCESS:
                             if (successCallback != null) {
-                                successCallback.onSuccess(obj.getString(Config.KEY_TOKEN));
+                                successCallback.onSuccess(obj.getString(Config.KEY_TOKEN),Config.RESULT_STATUS_SUCCESS);
                             }
                             break;
-
+                        case Config.RESULT_STATUS_INVALID_TOKEN:
+                            successCallback.onSuccess(obj.getString(Config.KEY_TOKEN),Config.RESULT_STATUS_INVALID_TOKEN);
+                            break;
                         default:
                             if (failCallback != null) {
                                 failCallback.onFail();
@@ -48,10 +50,11 @@ public class Login {
     }
 
     public static interface SuccessCallback {
-        void onSuccess(String token);
+        void onSuccess(String token, int isvalid);
     }
 
     public static interface FailCallback {
         void onFail();
     }
+
 }

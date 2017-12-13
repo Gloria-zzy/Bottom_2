@@ -63,22 +63,22 @@
 
             <View style="@style/bg_line" />
 
-            <LinearLayout style="@style/mid_layout">
+            <!--<LinearLayout style="@style/mid_layout">-->
 
-                <TextView
-                    style="@style/usertext"
-                    android:text="我的资料" />
+                <!--<TextView-->
+                    <!--style="@style/usertext"-->
+                    <!--android:text="我的资料" />-->
 
-                <ImageView style="@style/img_arrow" />
-            </LinearLayout>
+                <!--<ImageView style="@style/img_arrow" />-->
+            <!--</LinearLayout>-->
 
-            <View style="@style/bg_line" />
+            <!--<View style="@style/bg_line" />-->
 
             <LinearLayout style="@style/bottom_layout">
 
                 <TextView
                     style="@style/usertext"
-                    android:text="消息通知" />
+                    android:text="已抢订单" />
 
                 <ImageView style="@style/img_arrow" />
             </LinearLayout>

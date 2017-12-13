@@ -11,24 +11,6 @@
         android:background="@android:color/transparent"
         android:orientation="vertical">
 
-
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/searchview_line"
-            android:gravity="center"
-            android:queryHint="@string/search_qryHint"
-            style="@style/default_text" />
-
-        <!--<android.support.v4.view.ViewPager
-            android:id="@+id/viewpager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />-->
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
@@ -55,47 +37,20 @@
                 android:textColor="#ffffff"
                 android:textSize="27dp" />
 
-            <Button
-                android:id="@+id/mail_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="5dip"
-                android:layout_weight="1"
-                android:background="@drawable/btn_check_border"
-                android:gravity="center"
-                android:text="@string/want_to_post"
-                android:textColor="#ffffff"
-                android:textSize="27dp" />
-
         </LinearLayout>
 
-        <include
-            android:id="@+id/test1"
-            layout="@layout/mod_order" />
+        <LinearLayout
+            android:id="@+id/take_orders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <include
-            android:id="@+id/test2"
-            layout="@layout/mod_order" />
 
-        <include
-            android:id="@+id/test3"
-            layout="@layout/mod_order" />
+        </LinearLayout>
+        <!--<include-->
+            <!--android:id="@+id/test1"-->
+            <!--layout="@layout/mod_order" />-->
 
-        <include
-            android:id="@+id/test4"
-            layout="@layout/mod_order" />
-
-        <include
-            android:id="@+id/test5"
-            layout="@layout/mod_order" />
-
-        <include
-            android:id="@+id/test6"
-            layout="@layout/mod_order" />
-
-        <include
-            android:id="@+id/test7"
-            layout="@layout/mod_order" />
 
     </LinearLayout>
 

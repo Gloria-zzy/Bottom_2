@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:background="@color/nav_color"
         android:orientation="horizontal">
 
         <ImageView
@@ -28,16 +28,7 @@
             android:text="@string/locate_school"
             android:textColor="@color/white" android:layout_marginEnd="30dp" />
 
-        <ImageView
-            android:id="@+id/usr_head"
-            android:layout_width="35sp"
-            android:layout_height="35sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="5sp"
-            android:layout_marginRight="15sp"
-            android:layout_marginTop="5sp"
-            android:src="@drawable/item_head" android:contentDescription="TODO" android:layout_marginStart="5sp" android:layout_marginEnd="15sp" />
-    </LinearLayout>
+       </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/aty_locate_address_relative_for_text"

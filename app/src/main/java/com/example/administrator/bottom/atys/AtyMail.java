@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.administrator.bottom.R;
 
@@ -22,7 +21,7 @@ public class AtyMail extends AppCompatActivity {
 
     //UI组件初始化
     private void bindView() {
-        time_spinner=(Spinner)findViewById(R.id.time_spinner);
+        time_spinner=(Spinner)findViewById(R.id.point_spinner);
         loc_spinner=(Spinner)findViewById(R.id.loc_spinner);
     }
 

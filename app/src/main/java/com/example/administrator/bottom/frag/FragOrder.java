@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +22,7 @@ import com.example.administrator.bottom.R;
 import com.example.administrator.bottom.atys.AtyGenCode;
 import com.example.administrator.bottom.atys.AtyLogin;
 import com.example.administrator.bottom.atys.AtyMainFrame;
-import com.example.administrator.bottom.custom.Orderview;
+import com.example.administrator.bottom.custom.OrderView;
 import com.example.administrator.bottom.net.DownloadOrders;
 import com.example.administrator.bottom.net.Order;
 
@@ -35,9 +36,11 @@ import static com.example.administrator.bottom.Config.APP_ID;
  */
 
 public class FragOrder extends Fragment {
-    private Orderview order;
+    private OrderView order;
     private LinearLayout ll;
     private LinearLayout history;
+    private ScrollView scrollView1;
+    private ScrollView scrollView2;
     private String phone;
 
     private ViewPager pager;
@@ -76,8 +79,11 @@ public class FragOrder extends Fragment {
         } else {
             view = inflater.inflate(R.layout.frag_order, container, false);
 
-            ll = (LinearLayout) view.findViewById(R.id.current_order_ll);
-            history = (LinearLayout) view.findViewById(R.id.history_order_ll);
+            scrollView1=(ScrollView) inflater.inflate(R.layout.mod_current_order, container, false).findViewById(R.id.current_order_scroll);
+            scrollView2=(ScrollView) inflater.inflate(R.layout.mod_history_order, container, false).findViewById(R.id.history_order_scroll);
+
+            ll = (LinearLayout) scrollView1.findViewById(R.id.current_order_ll);
+            history = (LinearLayout) scrollView2.findViewById(R.id.history_order_ll);
 
             pager = (ViewPager) view.findViewById(R.id.order_pager);
             tv1 = (TextView) view.findViewById(R.id.page_current);
@@ -87,8 +93,6 @@ public class FragOrder extends Fragment {
             tv2.setOnClickListener(new FragOrder.MyClickListener(1));
             tvs.add(tv1);
             tvs.add(tv2);
-
-
 
             //        初始化ViewPager组件
             initView();
@@ -114,22 +118,23 @@ public class FragOrder extends Fragment {
         }
         new DownloadOrders(phone, new DownloadOrders.SuccessCallback() {
 
-
             @Override
             public void onSuccess(ArrayList<Order> orders) {
 
                 for (Order o : orders) {
                     String number = o.getOrderNum();
-                    String time = o.getTime();
+                    String point = o.getPoint();
+                    String takenum = o.getTakenum();
                     String loc = o.getLocation();
                     String note = o.getNote();
                     String status = o.getStatus();
                     String date = o.getDate();
-                    final Orderview newov = new Orderview(getActivity());
+                    final OrderView newov = new OrderView(getActivity());
 
                     newov.setOrder_intro("小件快递");
                     newov.setOrder_num(number);
-                    newov.setOrder_time(time);
+                    newov.setOrder_point(point);
+                    newov.setOrder_takenum(takenum);
                     newov.setOrder_loc(loc);
                     newov.setNum(number);
                     newov.setTime(date);
@@ -140,9 +145,11 @@ public class FragOrder extends Fragment {
                     if (status.equals("0")) {
                         newov.setOrder_status("已结束");
                         history.addView(newov);
+                        newov.getOrder_change().setVisibility(View.GONE);
                     } else if (status.equals("1")) {
                         newov.setOrder_status("正在送货");
                         ll.addView(newov);
+                        newov.getOrder_cancel().setVisibility(View.GONE);
                     } else if (status.equals("2")) {
                         newov.setOrder_status("订单异常");
                         ll.addView(newov);
@@ -154,12 +161,12 @@ public class FragOrder extends Fragment {
 //                                    Toast.makeText(getActivity(), "点击了取消按钮", Toast.LENGTH_SHORT).show();
                         }
                     });
-                    newov.setContactButtonListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-//                                    Toast.makeText(getActivity(), "点击了联系按钮", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+//                    newov.setContactButtonListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+////                                    Toast.makeText(getActivity(), "点击了联系按钮", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
                     newov.setCancelButtonListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -218,11 +225,12 @@ public class FragOrder extends Fragment {
     public void initView() {
         // TODO Auto-generated method stub
         views = new ArrayList<View>();
-        LayoutInflater li = getActivity().getLayoutInflater();
-        views.add(li.inflate(R.layout.mod_current_order, null));
-        views.add(li.inflate(R.layout.mod_history_order, null));
-    }
+//        scrollView = new ArrayList<View>();
+//        LayoutInflater li = getActivity().getLayoutInflater();
 
+        views.add(scrollView1);
+        views.add(scrollView2);
+    }
 
     public void initViewPager() {
         // TODO Auto-generated method stub
@@ -278,6 +286,7 @@ public class FragOrder extends Fragment {
                                 Object object) {
             // TODO Auto-generated method stub
             //super.destroyItem(container, position, object);
+
             container.removeView(views.get(position));
         }
 

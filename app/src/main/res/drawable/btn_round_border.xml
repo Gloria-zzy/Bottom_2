@@ -8,10 +8,13 @@
     <!--</shape>-->
     <!--</item>-->
     <item>
-        <shape android:shape="rectangle">
-            <stroke android:width="1px" android:color="#0202ff" />
-            <corners android:radius="3dp" />
-            <solid android:color="#3636ff" />
+        <shape android:shape="oval">
+            <stroke android:width="0px" android:color="#BEBEBE" />
+
+            <solid android:color="@color/theme" />
+            <size android:width="20dp"
+
+            android:height="20dp"/>
         </shape>
     </item>
 </selector>

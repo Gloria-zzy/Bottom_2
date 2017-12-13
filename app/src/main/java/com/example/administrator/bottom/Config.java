@@ -5,10 +5,10 @@ import android.content.SharedPreferences.Editor;
 
 public class Config {
 
-    public static final String SERVER_URL = "http://101.132.190.102:8080/TestServer/api.jsp";
+//    public static final String SERVER_URL = "http://101.132.190.102:8080/TestServer/api.jsp";
 //    public static final String SERVER_URL = "http://10.0.171.71:8080/TestServer/api.jsp";
 
-//    public static final String SERVER_URL = "http://10.0.209.67:8080/TestServer/api.jsp";
+    public static final String SERVER_URL = "http://172.20.10.8:8080/TestServer/api.jsp";
 
     public static final String KEY_TOKEN = "token";
     public static final String KEY_ACTION = "action";
@@ -36,7 +36,8 @@ public class Config {
     public static final String KEY_ADDRESS_ROOM = "address_room";
 
     public static final String KEY_ORDER_NUMBER = "order_number";
-    public static final String KEY_ORDER_TIME = "order_time";
+    public static final String KEY_ORDER_POINT = "order_point";
+    public static final String KEY_ORDER_TAKENUM = "order_takenum";
     public static final String KEY_ORDER_LOCATION = "order_location";
     public static final String KEY_ORDER_NOTE = "order_note";
     public static final String KEY_ORDER_DATE = "order_date";

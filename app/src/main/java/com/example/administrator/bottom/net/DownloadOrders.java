@@ -29,7 +29,8 @@ public class DownloadOrders {
                                     orders.add(new Order(
                                                     orderObj.getString(Config.KEY_ORDER_NUMBER),
                                                     orderObj.getString(Config.KEY_PHONE_NUM),
-                                                    orderObj.getString(Config.KEY_ORDER_TIME),
+                                                    orderObj.getString(Config.KEY_ORDER_POINT),
+                                                    orderObj.getString(Config.KEY_ORDER_TAKENUM),
                                                     orderObj.getString(Config.KEY_ORDER_LOCATION),
                                                     orderObj.getString(Config.KEY_ORDER_NOTE),
                                                     orderObj.getString(Config.KEY_ORDER_STATUS),

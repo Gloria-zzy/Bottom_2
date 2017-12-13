@@ -92,17 +92,25 @@ public class AtyLogin extends Activity {
                 new Login(MD5Tool.md5(etPhone.getText().toString()), etCode.getText().toString(), etPhone.getText().toString(),new Login.SuccessCallback() {
 
                     @Override
-                    public void onSuccess(String token) {
+                    public void onSuccess(String token,int isvalid) {
 
                         Config.cacheToken(AtyLogin.this, token);
                         Config.cachePhoneNum(AtyLogin.this, etPhone.getText().toString());
 
-                        Config.loginStatus = 1;
+                        Config.loginStatus = Config.RESULT_STATUS_SUCCESS;
 
-//                        Intent i = new Intent(AtyLogin.this, AtyAddress.class);
-                        Intent i = new Intent(AtyLogin.this, AtyAddress.class);
-                        startActivity(i);
-                        finish();
+                        if(isvalid==Config.RESULT_STATUS_SUCCESS){
+                            Toast.makeText(AtyLogin.this, "您已注册", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(AtyLogin.this, AtyMainFrame.class);
+                            i.putExtra("page","me");
+                            startActivity(i);
+                            finish();
+                        }else{
+                            Intent i = new Intent(AtyLogin.this, AtyAddress.class);
+                            startActivity(i);
+                            finish();
+                        }
+
 
                     }
                 }, new Login.FailCallback() {

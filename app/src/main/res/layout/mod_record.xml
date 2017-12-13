@@ -1,30 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
+    android:layout_height="150dp"
+    android:layout_marginBottom="2sp"
+    android:background="@drawable/bg_white_round"
     android:padding="6dip"
     android:paddingBottom="20dip"
-    android:layout_marginBottom="2sp"
-    android:background="@color/white"
-    >
+    android:layout_margin="1sp">
 
-    <!--<TextView-->
-        <!--android:id="@+id/record_num"-->
-        <!--android:layout_width="50sp"-->
-        <!--android:layout_height="50sp"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginTop="5dip"-->
-        <!--android:gravity="center"-->
-        <!--android:text="1"-->
-        <!--android:textSize="40sp" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="5dip"
         android:orientation="vertical"
-        android:padding="1dip">
+        android:padding="1dip"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,25 +34,25 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/num"
+                android:id="@+id/tv_order_ordernum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10sp"
                 android:layout_toRightOf="@id/introduction"
                 android:text="订单号 :"
-                android:layout_marginLeft="10sp"
                 android:textSize="13sp" />
 
             <TextView
-                android:id="@+id/order_num"
+                android:id="@+id/tvshow_order_ordernum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/num"
-                android:text="123456789011"
                 android:layout_marginLeft="10sp"
+                android:layout_toRightOf="@id/tv_order_ordernum"
+                android:text="123456789011"
                 android:textSize="13sp" />
 
             <TextView
@@ -77,8 +68,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/time"
                 android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/time"
                 android:text="下单时间 : "
                 android:textSize="9sp" />
 
@@ -91,55 +82,130 @@
             android:padding="1dip" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
-                android:text="收货地点 :"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/order_loc"
-                android:layout_width="wrap_content"
+                android:layout_weight="5.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dip"
+                        android:text="快递点 :"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/order_point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dip"
+                        android:paddingLeft="10sp"
+                        android:text="(快递点)"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dip"
+                        android:text="收货地点 :"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/order_loc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dip"
+                        android:paddingLeft="10sp"
+                        android:text="(收货地点)"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_order_picknum_status"
+                android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
-                android:paddingLeft="10sp"
-                android:text="(收货地点)"
-                android:textSize="13sp" />
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dip"
+                        android:text="取货号 :"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/order_takenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dip"
+                        android:paddingLeft="10sp"
+                        android:text="(取货号)"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dip"
+                        android:text="状态 :"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/order_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dip"
+                        android:paddingLeft="10sp"
+                        android:text="(状态)"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
-                android:text="收货时间 :"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/order_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
-                android:paddingLeft="10sp"
-                android:text="(收货时间)"
-                android:textSize="13sp" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dip"
                 android:text="备注 :"
                 android:textSize="13sp" />
+
             <TextView
                 android:id="@+id/order_note"
                 android:layout_width="wrap_content"
@@ -147,26 +213,6 @@
                 android:layout_marginTop="5dip"
                 android:paddingLeft="10sp"
                 android:text="(备注)"
-                android:textSize="13sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
-                android:text="状态 :"
-                android:textSize="13sp" />
-            <TextView
-                android:id="@+id/order_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
-                android:paddingLeft="10sp"
-                android:text="(状态)"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -185,48 +231,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10sp">
+                android:layout_marginTop="10sp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/order_code"
                     android:layout_width="75sp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_code_border"
-                    android:textColor="#ffffff"
                     android:layout_marginRight="5dp"
+                    android:background="@drawable/btn_code_border"
                     android:text="订单二维码"
-                    android:textSize="12sp"/>
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/order_change"
                     android:layout_width="70sp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_func_border"
                     android:layout_marginRight="5dp"
+                    android:background="@drawable/btn_func_border"
                     android:text="修改订单"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/order_cancel"
                     android:layout_width="70sp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_func_border"
                     android:layout_marginRight="5dp"
-                    android:text="取消订单"
-                    android:textSize="12sp"/>
-
-                <Button
-                    android:id="@+id/order_contact"
-                    android:layout_width="75sp"
-                    android:layout_height="wrap_content"
                     android:background="@drawable/btn_func_border"
-                    android:text="联系送货员"
-                    android:layout_marginRight="5dp"
-                    android:textSize="12sp"/>
+                    android:text="删除订单"
+                    android:textSize="12sp" />
 
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
-
 </RelativeLayout>

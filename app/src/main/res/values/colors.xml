@@ -11,4 +11,5 @@
     <color name="blue">#419DE4</color>
     <color name="theme">#FFEEC591</color>
     <color name="theme_2nd">#CCEEC591</color>
+    <color name="nav_color">#4052b5</color>
 </resources>

@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:background="@color/nav_color"
         android:orientation="horizontal">
 
         <ImageView
@@ -28,15 +28,7 @@
             android:textColor="@color/white"
             style="@style/nav_text" />
 
-        <ImageView
-            android:id="@+id/usr_head"
-            android:layout_width="35sp"
-            android:layout_height="35sp"
-            android:layout_marginBottom="5sp"
-            android:layout_marginLeft="5sp"
-            android:layout_marginRight="15sp"
-            android:layout_marginTop="5sp"
-            android:src="@drawable/item_head" />
+
 
     </LinearLayout>
 
@@ -58,11 +50,11 @@
             android:layout_height="wrap_content">
 
             <Spinner
-                android:id="@+id/time_spinner"
+                android:id="@+id/point_spinner"
                 style="@style/spinner_bar" />
 
             <ImageView
-                android:layout_alignBottom="@+id/time_spinner"
+                android:layout_alignBottom="@+id/point_spinner"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="2dp"
