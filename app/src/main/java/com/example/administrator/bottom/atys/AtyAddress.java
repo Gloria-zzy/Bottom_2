@@ -88,8 +88,6 @@ public class AtyAddress extends Activity {
         //加载适配器
         area_spinner.setAdapter(arr_adapter);
 
-//        area_spinner.change;
-
         //数据
         data_list = new ArrayList<String>();
 //        if(area.equals("东苑")){

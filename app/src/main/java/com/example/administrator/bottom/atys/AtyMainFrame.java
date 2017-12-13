@@ -122,8 +122,10 @@ public class AtyMainFrame extends Activity implements View.OnClickListener {
                 tabHome.setSelected(true);
                 if (fragHome == null) {
                     fragHome = new FragHome();
+                    fragHome.fresh();
                     transaction.add(R.id.fragment_container, fragHome);
                 } else {
+                    fragHome.fresh();
                     transaction.show(fragHome);
                 }
                 break;
@@ -141,17 +143,6 @@ public class AtyMainFrame extends Activity implements View.OnClickListener {
 
                 }
                 break;
-
-//            case R.id.txt_post:
-//                selected();
-//                tabPost.setSelected(true);
-//                if (fragCommunity == null) {
-//                    fragCommunity = new FragCommunity();
-//                    transaction.add(R.id.fragment_container, fragCommunity);
-//                } else {
-//                    transaction.show(fragCommunity);
-//                }
-//                break;
 
             case R.id.txt_me:
                 selected();

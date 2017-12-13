@@ -21,6 +21,7 @@ import com.example.administrator.bottom.R;
 import com.example.administrator.bottom.atys.AtyAddressMng;
 import com.example.administrator.bottom.atys.AtyLogin;
 import com.example.administrator.bottom.atys.AtyMainFrame;
+import com.example.administrator.bottom.atys.AtyTakenOrders;
 import com.example.administrator.bottom.atys.AtyUnlog;
 import com.example.administrator.bottom.net.CompleteOrder;
 import com.example.administrator.zxinglibrary.android.CaptureActivity;
@@ -158,8 +159,28 @@ public class FragMe extends Fragment {
             }
 
         });
+
+        view.findViewById(R.id.tv_taken_orders).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
+                if (Config.loginStatus == 1) {
+                    Intent intent = new Intent(getActivity(), AtyTakenOrders.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
+                } else {
+                    Intent intent = new Intent(getActivity(), AtyUnlog.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
+                }
+            }
+        });
+
+
         return view;
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

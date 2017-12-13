@@ -3,7 +3,9 @@ package com.example.administrator.bottom.frag;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,14 +14,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.bottom.Config;
 import com.example.administrator.bottom.R;
 import com.example.administrator.bottom.atys.AtyFetch;
+import com.example.administrator.bottom.atys.AtyGenCode;
 import com.example.administrator.bottom.atys.AtyMail;
 import com.example.administrator.bottom.atys.AtyUnlog;
 import com.example.administrator.bottom.custom.OrderView;
 import com.example.administrator.bottom.custom.TakeView;
+import com.example.administrator.bottom.net.DownloadOrders;
+import com.example.administrator.bottom.net.DownloadWaitingOrders;
+import com.example.administrator.bottom.net.Order;
+
+import java.util.ArrayList;
+
+import static com.example.administrator.bottom.Config.APP_ID;
 
 /**
  * Created by Administrator on 2017/10/29.
@@ -30,6 +41,7 @@ public class FragHome extends Fragment {
     private TextView mTextView;
     private Button get_btn, mail_btn;
     private LinearLayout linearLayout;
+    private String phone;
 
     public FragHome() {
 
@@ -40,7 +52,8 @@ public class FragHome extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_home, container, false);
         get_btn = (Button) view.findViewById(R.id.get_btn);
-        linearLayout = (LinearLayout)view.findViewById(R.id.take_orders);
+        linearLayout = (LinearLayout) view.findViewById(R.id.take_orders);
+        fresh();
         return view;
     }
 
@@ -49,6 +62,7 @@ public class FragHome extends Fragment {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
 
+        fresh();
         get_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -63,19 +77,72 @@ public class FragHome extends Fragment {
                 }
             }
         });
+    }
 
-        OrderView orderView = new OrderView(getActivity());
-        TakeView takeView = new TakeView(getActivity());
-        takeView.setOrderView(orderView);
-        linearLayout.addView(takeView);
-        OrderView orderView2 = new OrderView(getActivity());
-        TakeView takeView2 = new TakeView(getActivity());
-        takeView2.setOrderView(orderView2);
-        linearLayout.addView(takeView2);
-        OrderView orderView3 = new OrderView(getActivity());
-        TakeView takeView3 = new TakeView(getActivity());
-        takeView3.setOrderView(orderView3);
-        linearLayout.addView(takeView3);
+    public void fresh() {
+
+        if (linearLayout != null) {
+            linearLayout.removeAllViews();
+        }
+        new DownloadWaitingOrders(new DownloadWaitingOrders.SuccessCallback() {
+
+            @Override
+            public void onSuccess(ArrayList<Order> orders) {
+
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(APP_ID, Context.MODE_PRIVATE);
+                phone = sharedPreferences.getString(Config.KEY_PHONE_NUM, "");
+                for (Order o : orders) {
+                    if (o.getStatus().equals("2") && (!o.getPhone().equals(phone))) {
+                        String number = o.getOrderNum();
+                        String point = o.getPoint();
+                        String takenum = o.getTakenum();
+                        String loc = o.getLocation();
+                        String note = o.getNote();
+                        String status = o.getStatus();
+                        String date = o.getDate();
+                        final OrderView newov = new OrderView(getActivity());
+                        newov.setOrder_intro("小件快递");
+                        newov.setOrder_num(number);
+                        newov.setOrder_point(point);
+                        newov.setOrder_takenum(takenum);
+                        newov.setOrder_loc(loc);
+                        newov.setNum(number);
+                        newov.setTime(date);
+                        if (note.equals("none")) {
+                            note = "无";
+                        }
+                        newov.setOrder_note(note);
+                        if (status.equals("0")) {
+                            newov.setOrder_status("已结束");
+                        } else if (status.equals("1")) {
+                            newov.setOrder_status("正在送货");
+                        } else if (status.equals("2")) {
+                            newov.setOrder_status("待接单");
+                        } else if (status.equals("3")) {
+                            newov.setOrder_status("订单异常");
+                        }
+
+                        final TakeView newtv = new TakeView(getActivity());
+                        newtv.setOrderView(newov);
+                        newtv.getBtn_ask_to_take().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(getActivity(), "点击了抢单", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        linearLayout.addView(newtv);
+                    }
+                }
+            }
+        }, new DownloadWaitingOrders.FailCallback() {
+
+            @Override
+            public void onFail() {
+                Toast.makeText(getActivity(), R.string.fail_to_commit, Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 }
+
 

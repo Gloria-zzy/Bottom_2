@@ -122,6 +122,10 @@ public class OrderView extends RelativeLayout {
         this.time.setText(time);
     }
 
+    public TextView getTime() {
+        return time;
+    }
+
     public void setOrder_point(String order_time) {
         this.order_point.setText(order_time);
     }
@@ -146,11 +150,7 @@ public class OrderView extends RelativeLayout {
         return order_intro;
     }
 
-    public TextView getTime() {
-        return time;
-    }
-
-    public TextView getOrder_time() {
+    public TextView getOrder_point() {
         return order_point;
     }
 

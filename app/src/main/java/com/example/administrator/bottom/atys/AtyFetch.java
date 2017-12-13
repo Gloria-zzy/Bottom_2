@@ -56,7 +56,7 @@ public class AtyFetch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-        }
+            }
         });
 
         //数据
@@ -121,32 +121,37 @@ public class AtyFetch extends AppCompatActivity {
 
                 // 获得phoneNum
                 note = note_edittext.getText().toString();
-                if(note.equals("")){
+                if (note.equals("")) {
                     note = "none";
                 }
                 takenum = takenum_edittext.getText().toString();
                 SharedPreferences sharedPreferences = getSharedPreferences(APP_ID, Context.MODE_PRIVATE);
                 String phone = sharedPreferences.getString(Config.KEY_PHONE_NUM, "");
 
-                new UploadOrder(phone, point,takenum, loc, note,date, new UploadOrder.SuccessCallback() {
+                if (takenum.equals("") || takenum == null) {
+                    Toast.makeText(AtyFetch.this, "取货号不能为空！", Toast.LENGTH_LONG).show();
+                } else {
+                    new UploadOrder(phone, point, takenum, loc, note, date, new UploadOrder.SuccessCallback() {
 
-                    @Override
-                    public void onSuccess() {
+                        @Override
+                        public void onSuccess() {
 
-                        Toast.makeText(AtyFetch.this,"提交成功！", Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(AtyFetch.this, AtyMainFrame.class);
-                        i.putExtra("page","order");
-                        startActivity(i);
-                        finish();
 
-                    }
-                }, new UploadOrder.FailCallback() {
+                            Toast.makeText(AtyFetch.this, "提交成功！", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(AtyFetch.this, AtyMainFrame.class);
+                            i.putExtra("page", "order");
+                            startActivity(i);
+                            finish();
 
-                    @Override
-                    public void onFail() {
-                        Toast.makeText(AtyFetch.this, R.string.fail_to_commit, Toast.LENGTH_LONG).show();
-                    }
-                });
+                        }
+                    }, new UploadOrder.FailCallback() {
+
+                        @Override
+                        public void onFail() {
+                            Toast.makeText(AtyFetch.this, R.string.fail_to_commit, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
             }
         });
     }

@@ -151,6 +151,10 @@ public class FragOrder extends Fragment {
                         ll.addView(newov);
                         newov.getOrder_cancel().setVisibility(View.GONE);
                     } else if (status.equals("2")) {
+                        newov.setOrder_status("待接单");
+                        ll.addView(newov);
+                        newov.getOrder_cancel().setVisibility(View.GONE);
+                    } else if (status.equals("3")) {
                         newov.setOrder_status("订单异常");
                         ll.addView(newov);
                     }

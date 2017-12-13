@@ -60,9 +60,10 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
-        <activity android:name=".atys.AtyGenCode"></activity>
+        <activity android:name=".atys.AtyGenCode" />
+        <activity android:name=".atys.AtyTakenOrders"></activity>
     </application>
 
 </manifest>
