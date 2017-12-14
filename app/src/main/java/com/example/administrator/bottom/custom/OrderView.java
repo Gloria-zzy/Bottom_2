@@ -32,6 +32,7 @@ public class OrderView extends RelativeLayout {
     private TextView tv_order_ordernum;
     private TextView tvshow_order_ordernum;
     private LinearLayout ll_order_picknum_status;
+    private String selfphone;
 
     public OrderView(Context context){
         super(context);
@@ -76,6 +77,14 @@ public class OrderView extends RelativeLayout {
         tv_order_ordernum =(TextView) findViewById(R.id.tv_order_ordernum);
         tvshow_order_ordernum=(TextView)findViewById(R.id.tvshow_order_ordernum);
         ll_order_picknum_status=(LinearLayout)findViewById(R.id.ll_order_picknum_status);
+    }
+
+    public String getSelfphone() {
+        return selfphone;
+    }
+
+    public void setSelfphone(String selfphone) {
+        this.selfphone = selfphone;
     }
 
     public TextView getTv_order_ordernum() {

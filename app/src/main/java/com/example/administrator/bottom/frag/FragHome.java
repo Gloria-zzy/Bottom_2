@@ -19,14 +19,14 @@ import android.widget.Toast;
 import com.example.administrator.bottom.Config;
 import com.example.administrator.bottom.R;
 import com.example.administrator.bottom.atys.AtyFetch;
-import com.example.administrator.bottom.atys.AtyGenCode;
-import com.example.administrator.bottom.atys.AtyMail;
+import com.example.administrator.bottom.atys.AtyMainFrame;
+import com.example.administrator.bottom.atys.AtyTakenOrders;
 import com.example.administrator.bottom.atys.AtyUnlog;
 import com.example.administrator.bottom.custom.OrderView;
 import com.example.administrator.bottom.custom.TakeView;
-import com.example.administrator.bottom.net.DownloadOrders;
 import com.example.administrator.bottom.net.DownloadWaitingOrders;
 import com.example.administrator.bottom.net.Order;
+import com.example.administrator.bottom.net.UpdateOrder;
 
 import java.util.ArrayList;
 
@@ -100,6 +100,7 @@ public class FragHome extends Fragment {
                         String note = o.getNote();
                         String status = o.getStatus();
                         String date = o.getDate();
+                        String selfphone = o.getPhone();
                         final OrderView newov = new OrderView(getActivity());
                         newov.setOrder_intro("小件快递");
                         newov.setOrder_num(number);
@@ -108,6 +109,7 @@ public class FragHome extends Fragment {
                         newov.setOrder_loc(loc);
                         newov.setNum(number);
                         newov.setTime(date);
+                        newov.setSelfphone(selfphone);
                         if (note.equals("none")) {
                             note = "无";
                         }
@@ -124,10 +126,41 @@ public class FragHome extends Fragment {
 
                         final TakeView newtv = new TakeView(getActivity());
                         newtv.setOrderView(newov);
+                        newtv.setOrder_taker(phone);
                         newtv.getBtn_ask_to_take().setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Toast.makeText(getActivity(), "点击了抢单", Toast.LENGTH_SHORT).show();
+
+                                if (Config.loginStatus == 1) {
+
+                                    new UpdateOrder(newtv.getPhone(),newtv.getOrder_taker(),newtv.getOrder_num(),newtv.getPoint(),newtv.getTakenum(),newtv.getLocation(), newtv.getNote(),newtv.getDate(), new UpdateOrder.SuccessCallback() {
+
+                                        @Override
+                                        public void onSuccess() {
+
+
+                                            Toast.makeText(getActivity(), "抢单成功！", Toast.LENGTH_LONG).show();
+                                            Intent i = new Intent(getActivity(), AtyMainFrame.class);
+                                            startActivity(i);
+
+                                        }
+                                    }, new UpdateOrder.FailCallback() {
+
+                                        @Override
+                                        public void onFail() {
+                                            Toast.makeText(getActivity(), R.string.fail_to_commit, Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+
+                                    Intent intent = new Intent(getActivity(), AtyTakenOrders.class);
+                                    startActivity(intent);
+                                    getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
+                                } else {
+                                    Intent intent = new Intent(getActivity(), AtyUnlog.class);
+                                    startActivity(intent);
+                                    getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
+                                }
+//                                Toast.makeText(getActivity(), newtv.getOrder_num(), Toast.LENGTH_SHORT).show();
                             }
                         });
                         linearLayout.addView(newtv);

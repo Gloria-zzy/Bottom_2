@@ -20,6 +20,15 @@ public class TakeView extends RelativeLayout {
     private Button btn_ask_to_take;
     private OrderView orderView;
 
+    private String phone;
+    private String order_taker;
+    private String order_num;
+    private String point;
+    private String takenum;
+    private String location;
+    private String note;
+    private String date;
+
     public TakeView(Context context) {
         super(context);
         // 加载布局
@@ -79,6 +88,78 @@ public class TakeView extends RelativeLayout {
 //        this.orderView.setNum(orderView.getNum());
         this.orderView.setTime(orderView.getTime().getText().toString());
         this.orderView.setOrder_note(orderView.getOrder_note().getText().toString());
+
+
+        phone = orderView.getSelfphone();
+        order_num = orderView.getNum();
+        point = orderView.getOrder_point().getText().toString();
+        takenum = orderView.getOrder_takenum().getText().toString();
+        location = orderView.getOrder_loc().getText().toString();
+        note = orderView.getOrder_note().getText().toString();
+        date = orderView.getTime().getText().toString();
     }
 
+    public String getOrder_num() {
+        return order_num;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getOrder_taker() {
+        return order_taker;
+    }
+
+    public void setOrder_taker(String order_taker) {
+        this.order_taker = order_taker;
+    }
+
+    public String getPoint() {
+        return point;
+    }
+
+    public void setPoint(String point) {
+        this.point = point;
+    }
+
+    public String getTakenum() {
+        return takenum;
+    }
+
+    public void setTakenum(String takenum) {
+        this.takenum = takenum;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setOrder_num(String order_num) {
+        this.order_num = order_num;
+    }
 }
