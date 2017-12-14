@@ -13,8 +13,9 @@ public class Order {
     private String status;
     private String date;
     private String takenum;
+    private String taker;
 
-    public Order(String orderNum, String phone, String point,String takenum, String location, String note, String status,String date) {
+    public Order(String orderNum, String phone, String point,String takenum, String location, String note, String status,String date,String taker) {
         this.orderNum = orderNum;
         this.phone = phone;
         this.point = point;
@@ -23,6 +24,7 @@ public class Order {
         this.note = note;
         this.status = status;
         this.date = date;
+        this.taker = taker;
     }
 
     public String getLocation() {
@@ -55,5 +57,9 @@ public class Order {
 
     public String getTakenum() {
         return takenum;
+    }
+
+    public String getTaker() {
+        return taker;
     }
 }

@@ -63,7 +63,8 @@
             android:process=":remote" />
 
         <activity android:name=".atys.AtyGenCode" />
-        <activity android:name=".atys.AtyTakenOrders"></activity>
+        <activity android:name=".atys.AtyTakenOrders" />
+        <activity android:name=".atys.AtyUpdateOrder"></activity>
     </application>
 
 </manifest>

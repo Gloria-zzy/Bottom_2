@@ -37,9 +37,8 @@ import static com.example.administrator.bottom.Config.APP_ID;
  */
 
 public class FragHome extends Fragment {
-    private String context;
-    private TextView mTextView;
-    private Button get_btn, mail_btn;
+
+    private Button get_btn;
     private LinearLayout linearLayout;
     private String phone;
 
@@ -53,16 +52,7 @@ public class FragHome extends Fragment {
         View view = inflater.inflate(R.layout.frag_home, container, false);
         get_btn = (Button) view.findViewById(R.id.get_btn);
         linearLayout = (LinearLayout) view.findViewById(R.id.take_orders);
-        fresh();
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        super.onActivityCreated(savedInstanceState);
-
-        fresh();
+//        fresh();
         get_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -77,6 +67,7 @@ public class FragHome extends Fragment {
                 }
             }
         });
+        return view;
     }
 
     public void fresh() {
@@ -133,15 +124,16 @@ public class FragHome extends Fragment {
 
                                 if (Config.loginStatus == 1) {
 
-                                    new UpdateOrder(newtv.getPhone(),newtv.getOrder_taker(),newtv.getOrder_num(),newtv.getPoint(),newtv.getTakenum(),newtv.getLocation(), newtv.getNote(),newtv.getDate(), new UpdateOrder.SuccessCallback() {
+                                    new UpdateOrder(newtv.getPhone(),newtv.getOrder_taker(),newtv.getOrder_num(),newtv.getPoint(),newtv.getTakenum(),newtv.getLocation(), newtv.getNote(),newtv.getDate(),"1", new UpdateOrder.SuccessCallback() {
 
                                         @Override
                                         public void onSuccess() {
 
 
                                             Toast.makeText(getActivity(), "抢单成功！", Toast.LENGTH_LONG).show();
-                                            Intent i = new Intent(getActivity(), AtyMainFrame.class);
+                                            Intent i = new Intent(getActivity(), AtyTakenOrders.class);
                                             startActivity(i);
+                                            getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
 
                                         }
                                     }, new UpdateOrder.FailCallback() {
@@ -152,9 +144,6 @@ public class FragHome extends Fragment {
                                         }
                                     });
 
-                                    Intent intent = new Intent(getActivity(), AtyTakenOrders.class);
-                                    startActivity(intent);
-                                    getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
                                 } else {
                                     Intent intent = new Intent(getActivity(), AtyUnlog.class);
                                     startActivity(intent);

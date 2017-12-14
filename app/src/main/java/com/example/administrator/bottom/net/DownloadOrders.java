@@ -34,7 +34,8 @@ public class DownloadOrders {
                                                     orderObj.getString(Config.KEY_ORDER_LOCATION),
                                                     orderObj.getString(Config.KEY_ORDER_NOTE),
                                                     orderObj.getString(Config.KEY_ORDER_STATUS),
-                                                    orderObj.getString(Config.KEY_ORDER_DATE)
+                                                    orderObj.getString(Config.KEY_ORDER_DATE),
+                                                    orderObj.getString(Config.KEY_ORDER_TAKER)
                                             )
                                     );
                                 }

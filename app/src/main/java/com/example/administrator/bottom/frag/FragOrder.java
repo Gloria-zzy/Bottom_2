@@ -22,9 +22,13 @@ import com.example.administrator.bottom.R;
 import com.example.administrator.bottom.atys.AtyGenCode;
 import com.example.administrator.bottom.atys.AtyLogin;
 import com.example.administrator.bottom.atys.AtyMainFrame;
+import com.example.administrator.bottom.atys.AtyTakenOrders;
+import com.example.administrator.bottom.atys.AtyUpdateOrder;
 import com.example.administrator.bottom.custom.OrderView;
+import com.example.administrator.bottom.net.DeleteOrder;
 import com.example.administrator.bottom.net.DownloadOrders;
 import com.example.administrator.bottom.net.Order;
+import com.example.administrator.bottom.net.UpdateOrder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,6 +154,7 @@ public class FragOrder extends Fragment {
                         newov.setOrder_status("正在送货");
                         ll.addView(newov);
                         newov.getOrder_cancel().setVisibility(View.GONE);
+                        newov.getOrder_change().setVisibility(View.GONE);
                     } else if (status.equals("2")) {
                         newov.setOrder_status("待接单");
                         ll.addView(newov);
@@ -162,19 +167,31 @@ public class FragOrder extends Fragment {
                     newov.setCancelButtonListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-//                                    Toast.makeText(getActivity(), "点击了取消按钮", Toast.LENGTH_SHORT).show();
+                            new DeleteOrder(newov.getOrder_num().getText().toString(), new DeleteOrder.SuccessCallback() {
+
+                                @Override
+                                public void onSuccess() {
+
+                                    Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_LONG).show();
+                                    fresh();
+
+                                }
+                            }, new DeleteOrder.FailCallback() {
+
+                                @Override
+                                public void onFail() {
+                                    Toast.makeText(getActivity(), R.string.fail_to_commit, Toast.LENGTH_LONG).show();
+                                }
+                            });
                         }
                     });
-//                    newov.setContactButtonListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-////                                    Toast.makeText(getActivity(), "点击了联系按钮", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-                    newov.setCancelButtonListener(new View.OnClickListener() {
+                    newov.setChangeButtonListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-//                                    Toast.makeText(getActivity(), "点击了修改按钮", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getActivity(), AtyUpdateOrder.class);
+                            intent.putExtra("order_num",newov.getNum());
+                            startActivity(intent);
+                            getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
                         }
                     });
                     newov.setGetCodeButtonListener(new View.OnClickListener() {

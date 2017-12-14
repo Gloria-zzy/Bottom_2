@@ -8,8 +8,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class DownloadWaitingOrders {
-    public DownloadWaitingOrders(final SuccessCallback successCallback, final FailCallback failCallback) {
+public class DownloadOneOrder {
+    public DownloadOneOrder(String order_num, final SuccessCallback successCallback, final FailCallback failCallback) {
         new NetConnection(Config.SERVER_URL, HttpMethod.POST, new NetConnection.SuccessCallback() {
 
             @Override
@@ -63,7 +63,7 @@ public class DownloadWaitingOrders {
                     failCallback.onFail();
                 }
             }
-        }, Config.KEY_ACTION, Config.ACTION_DOWNLOAD_WAITING_ORDERS);
+        }, Config.KEY_ACTION, Config.ACTION_DOWNLOAD_ONE_ORDER, Config.KEY_ORDER_NUMBER, order_num);
     }
 
     public static interface SuccessCallback {
