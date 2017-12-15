@@ -5,31 +5,29 @@
     android:padding="5dip"
     android:paddingBottom="20dip" >
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_left"
         android:layout_width="60sp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:layout_margin="6sp">
 
-        <ImageView
-            android:id="@+id/imageViewHead"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="5dip"
-            android:adjustViewBounds="true"
-            android:maxHeight="60dip"
-            android:maxWidth="60dip"
-            android:padding="1dip"
-            android:layout_margin="2sp"
-            android:src="@drawable/item_head" />
+        <!--<ImageView-->
+            <!--android:id="@+id/imageViewHead"-->
+            <!--android:layout_width="50sp"-->
+            <!--android:layout_height="50sp"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_marginTop="5dip"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:maxHeight="60dip"-->
+            <!--android:maxWidth="60dip"-->
+            <!--android:padding="1dip"-->
+            <!--android:layout_margin="2sp"-->
+            <!--android:src="@drawable/item_head" />-->
 
         <Button
             android:id="@+id/ask_to_take"
-            android:layout_alignParentBottom="true"
             android:layout_width="50sp"
             android:layout_height="50sp"
             android:background="@drawable/btn_round_border"
@@ -37,7 +35,7 @@
             android:textColor="#ffffff"
             android:textSize="17sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <LinearLayout
