@@ -5,14 +5,17 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +47,8 @@ public class FragMe extends Fragment {
     private TextView mTextView, phone_num;
     private int REQUEST_CODE_SCAN = 111;
     private TextView result;
+    private String IMAGE_UNSPECIFIED = "image/*";
+    private ImageView avatar;
 
     public FragMe() {
 
@@ -54,6 +59,7 @@ public class FragMe extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_me, container, false);
 
+        avatar = (ImageView) view.findViewById(R.id.iv_avatar);
         //login btn
         mTextView = (TextView) view.findViewById(R.id.func_btn);
         if (Config.loginStatus == 0) {
@@ -72,9 +78,10 @@ public class FragMe extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Config.loginStatus = 0;
-                    Intent intent = new Intent(getActivity(), AtyMainFrame.class);
-                    intent.putExtra("page", "me");
+                    Intent intent = new Intent(getActivity(), AtyLogin.class);
                     startActivity(intent);
+                    getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
+                    mTextView.setText("登录");
                     Config.cacheToken(getActivity(), "");
                 }
             });
@@ -176,6 +183,29 @@ public class FragMe extends Fragment {
             }
         });
 
+        view.findViewById(R.id.tv_ic).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Config.loginStatus == 1) {
+                    final int PHOTO_REQUEST_GALLERY = 1;//从相册中选择
+
+                    Intent intent = new Intent(Intent.ACTION_PICK, null);
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_UNSPECIFIED);
+                    startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
+                    getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
+
+                    Bitmap bitmap = intent.getParcelableExtra("data");
+
+
+                } else {
+                    Intent intent = new Intent(getActivity(), AtyUnlog.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
+                }
+
+            }
+        });
 
         return view;
     }
@@ -211,5 +241,57 @@ public class FragMe extends Fragment {
                 });
             }
         }
+
+        //选择头像
+        int PHOTO_REQUEST_CAREMA = 0;//相机拍照
+        final int PHOTO_REQUEST_GALLERY = 1;//从相册中选择
+        final int PHOTO_REQUEST_CUT = 2;//剪切结果结果
+        if (requestCode == PHOTO_REQUEST_GALLERY) {
+            // 从相册返回的数据
+            if (data != null) {
+                // 得到图片的全路径
+                Uri uri = data.getData();
+                crop(uri);
+            }
+
+        } else if (requestCode == PHOTO_REQUEST_CUT) {
+            // 从剪切图片返回的数据
+            if (data != null) {
+                Bitmap bitmap = data.getParcelableExtra("data");
+                this.avatar.setImageBitmap(bitmap);
+            }
+//            try {
+//                // 将临时文件删除
+//                tempFile.delete();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+
     }
+
+    private void crop(Uri uri) {
+        final int PHOTO_REQUEST_CUT = 2;//剪切结果结果
+        // 裁剪图片意图
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        intent.putExtra("crop", "true");
+        // 裁剪框的比例，1：1
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // 裁剪后输出图片的尺寸大小
+        intent.putExtra("outputX", 250);
+        intent.putExtra("outputY", 250);
+
+        intent.putExtra("outputFormat", "JPEG");// 图片格式
+        intent.putExtra("noFaceDetection", true);// 取消人脸识别
+        intent.putExtra("return-data", true);
+        // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CUT
+        startActivityForResult(intent, PHOTO_REQUEST_CUT);
+    }
+
 }

@@ -45,6 +45,7 @@ public class TakeView extends RelativeLayout {
         orderView.getOrder_cancel().setVisibility(View.GONE);
         orderView.getOrder_change().setVisibility(View.GONE);
         orderView.getOrder_code().setVisibility(View.GONE);
+        orderView.getDischarge_order().setVisibility(View.GONE);
     }
 
 

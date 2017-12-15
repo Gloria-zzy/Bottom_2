@@ -75,7 +75,9 @@ public class AtyFetch extends AppCompatActivity {
 
         //数据
         data_list = new ArrayList<String>();
-        data_list.add("默认地址");
+        SharedPreferences sharedPreferences = getSharedPreferences(APP_ID, Context.MODE_PRIVATE);
+        String abr = sharedPreferences.getString(Config.ADDRESS, "");
+        data_list.add(abr);
         data_list.add("明德楼");
         data_list.add("文德楼");
         data_list.add("信息中心");

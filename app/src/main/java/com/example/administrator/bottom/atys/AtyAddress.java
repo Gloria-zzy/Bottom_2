@@ -160,7 +160,8 @@ public class AtyAddress extends Activity {
                     // 获得phoneNum
                     SharedPreferences sharedPreferences = getSharedPreferences(APP_ID, Context.MODE_PRIVATE);
                     String phone = sharedPreferences.getString(Config.KEY_PHONE_NUM, "");
-
+                    String abr = area + building + room;
+                    Config.cacheAddress(AtyAddress.this, abr);
                     new UploadAddress(phone, school, area, building, room, new UploadAddress.SuccessCallback() {
 
                         @Override

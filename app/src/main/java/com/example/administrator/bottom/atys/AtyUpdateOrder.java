@@ -1,6 +1,8 @@
 package com.example.administrator.bottom.atys;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import com.example.administrator.bottom.Config;
 import com.example.administrator.bottom.R;
 import com.example.administrator.bottom.custom.OrderView;
 import com.example.administrator.bottom.net.DownloadOneOrder;
@@ -21,6 +24,8 @@ import com.example.administrator.bottom.net.UpdateOrder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.administrator.bottom.Config.APP_ID;
 
 public class AtyUpdateOrder extends AppCompatActivity {
 
@@ -84,7 +89,9 @@ public class AtyUpdateOrder extends AppCompatActivity {
 
         //数据
         data_list = new ArrayList<String>();
-        data_list.add("默认地址");
+        SharedPreferences sharedPreferences = getSharedPreferences(APP_ID, Context.MODE_PRIVATE);
+        String abr = sharedPreferences.getString(Config.ADDRESS, "");
+        data_list.add(abr);
         data_list.add("明德楼");
         data_list.add("文德楼");
         data_list.add("信息中心");

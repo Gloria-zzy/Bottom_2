@@ -17,6 +17,7 @@ import com.example.administrator.bottom.custom.OrderView;
 import com.example.administrator.bottom.net.DownloadOrders;
 import com.example.administrator.bottom.net.DownloadTakenOrders;
 import com.example.administrator.bottom.net.Order;
+import com.example.administrator.bottom.net.UpdateOrder;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,15 @@ public class AtyTakenOrders extends AppCompatActivity {
 
     private String phone;
     private LinearLayout sv;
+    private String number;
+    private String point;
+    private String takenum;
+    private String loc;
+    private String note;
+    private String status;
+    private String date;
+    private String order_num;
+    private String taker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +64,15 @@ public class AtyTakenOrders extends AppCompatActivity {
             public void onSuccess(ArrayList<Order> orders) {
 
                 for (Order o : orders) {
-                    String number = o.getOrderNum();
-                    String point = o.getPoint();
-                    String takenum = o.getTakenum();
-                    String loc = o.getLocation();
-                    String note = o.getNote();
-                    String status = o.getStatus();
-                    String date = o.getDate();
+                    number = o.getOrderNum();
+                    point = o.getPoint();
+                    takenum = o.getTakenum();
+                    loc = o.getLocation();
+                    note = o.getNote();
+                    status = o.getStatus();
+                    date = o.getDate();
+                    order_num = o.getOrderNum();
+                    taker = o.getTaker();
                     final OrderView newov = new OrderView(AtyTakenOrders.this);
 
                     newov.setOrder_intro("小件快递");
@@ -74,6 +86,9 @@ public class AtyTakenOrders extends AppCompatActivity {
                         note = "无";
                     }
                     newov.setOrder_note(note);
+                    newov.getOrder_cancel().setVisibility(View.GONE);
+                    newov.getOrder_change().setVisibility(View.GONE);
+                    newov.getOrder_code().setVisibility(View.GONE);
                     if (status.equals("0")) {
                         newov.setOrder_status("已结束");
                         sv.addView(newov);
@@ -87,6 +102,31 @@ public class AtyTakenOrders extends AppCompatActivity {
                         newov.setOrder_status("订单异常");
                         sv.addView(newov);
                     }
+                    newov.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            new UpdateOrder(phone,taker,order_num,point,takenum,loc, note,date,"2", new UpdateOrder.SuccessCallback() {
+
+                                @Override
+                                public void onSuccess() {
+
+
+                                    Toast.makeText(AtyTakenOrders.this, "修改成功", Toast.LENGTH_LONG).show();
+                                    Intent i = new Intent(AtyTakenOrders.this, AtyMainFrame.class);
+                                    i.putExtra("page","order");
+                                    startActivity(i);
+                                    AtyTakenOrders.this.overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
+
+                                }
+                            }, new UpdateOrder.FailCallback() {
+
+                                @Override
+                                public void onFail() {
+                                    Toast.makeText(AtyTakenOrders.this, R.string.fail_to_commit, Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    });
                 }
             }
         }, new DownloadTakenOrders.FailCallback() {

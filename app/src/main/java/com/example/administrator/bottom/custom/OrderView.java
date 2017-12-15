@@ -27,6 +27,7 @@ public class OrderView extends RelativeLayout {
     private Button order_contact;
     private Button order_change;
     private Button order_code;
+    private Button discharge_order;
     private TextView order_num;
     private String num;
     private TextView tv_order_ordernum;
@@ -50,6 +51,7 @@ public class OrderView extends RelativeLayout {
         order_cancel = (Button) findViewById(R.id.order_cancel);
         order_change = (Button) findViewById(R.id.order_change);
         order_code = (Button) findViewById(R.id.order_code);
+        discharge_order = (Button) findViewById(R.id.discharge_order);
         order_num = (TextView) findViewById(R.id.tvshow_order_ordernum);
         tv_order_ordernum =(TextView) findViewById(R.id.tv_order_ordernum);
         tvshow_order_ordernum=(TextView)findViewById(R.id.tvshow_order_ordernum);
@@ -73,10 +75,19 @@ public class OrderView extends RelativeLayout {
         order_cancel = (Button) findViewById(R.id.order_cancel);
         order_change = (Button) findViewById(R.id.order_change);
         order_code = (Button) findViewById(R.id.order_code);
+        discharge_order = (Button) findViewById(R.id.discharge_order);
         order_num = (TextView) findViewById(R.id.tvshow_order_ordernum);
         tv_order_ordernum =(TextView) findViewById(R.id.tv_order_ordernum);
         tvshow_order_ordernum=(TextView)findViewById(R.id.tvshow_order_ordernum);
         ll_order_picknum_status=(LinearLayout)findViewById(R.id.ll_order_picknum_status);
+    }
+
+    public Button getDischarge_order() {
+        return discharge_order;
+    }
+
+    public void setDischarge_order(Button discharge_order) {
+        this.discharge_order = discharge_order;
     }
 
     public String getSelfphone() {

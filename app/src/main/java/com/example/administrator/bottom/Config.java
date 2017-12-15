@@ -2,6 +2,7 @@ package com.example.administrator.bottom;
 
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Bitmap;
 
 public class Config {
 
@@ -70,6 +71,9 @@ public class Config {
     public static final String ACTION_REGIST = "regist";
     public static final String ACTION_COMPLETE_ORDER = "complete_order";
 
+    public static String ADDRESS = "";
+    public static Bitmap AVATAR;
+
     public static final int ACTIVITY_RESULT_NEED_REFRESH = 10000;
 
     //if user has already login , then loginStatue = 1
@@ -84,6 +88,13 @@ public class Config {
         Editor e = context.getSharedPreferences(APP_ID, Context.MODE_PRIVATE)
                 .edit();
         e.putString(KEY_TOKEN, token);
+        e.commit();
+    }
+
+    public static void cacheAddress(Context context, String token) {
+        Editor e = context.getSharedPreferences(APP_ID, Context.MODE_PRIVATE)
+                .edit();
+        e.putString(ADDRESS, token);
         e.commit();
     }
 

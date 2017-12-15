@@ -129,7 +129,7 @@ public class FragHome extends Fragment {
                                         @Override
                                         public void onSuccess() {
 
-
+                                            fresh();
                                             Toast.makeText(getActivity(), "抢单成功！", Toast.LENGTH_LONG).show();
                                             Intent i = new Intent(getActivity(), AtyTakenOrders.class);
                                             startActivity(i);
