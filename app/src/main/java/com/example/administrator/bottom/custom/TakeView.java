@@ -35,7 +35,7 @@ public class TakeView extends RelativeLayout {
         LayoutInflater.from(context).inflate(R.layout.mod_order, this);
 
         // 获取控件
-        imageView =(ImageView)findViewById(R.id.imageViewHead);
+//        imageView =(ImageView)findViewById(R.id.imageViewHead);
         orderView =(OrderView)findViewById(R.id.order_view);
         btn_ask_to_take = (Button)findViewById(R.id.ask_to_take);
 
@@ -56,7 +56,7 @@ public class TakeView extends RelativeLayout {
         LayoutInflater.from(context).inflate(R.layout.mod_record, this);
 
         // 获取控件
-        imageView =(ImageView)findViewById(R.id.imageViewHead);
+//        imageView =(ImageView)findViewById(R.id.imageViewHead);
         orderView =(OrderView)findViewById(R.id.order_view);
     }
 

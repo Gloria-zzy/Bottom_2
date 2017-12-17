@@ -36,6 +36,7 @@ public class AtyTakenOrders extends AppCompatActivity {
     private String date;
     private String order_num;
     private String taker;
+    private String publisher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class AtyTakenOrders extends AppCompatActivity {
                     date = o.getDate();
                     order_num = o.getOrderNum();
                     taker = o.getTaker();
+                    publisher = o.getPhone();
                     final OrderView newov = new OrderView(AtyTakenOrders.this);
 
                     newov.setOrder_intro("小件快递");
@@ -105,13 +107,13 @@ public class AtyTakenOrders extends AppCompatActivity {
                     newov.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            new UpdateOrder(phone,taker,order_num,point,takenum,loc, note,date,"2", new UpdateOrder.SuccessCallback() {
+                            new UpdateOrder(publisher,taker,order_num,point,takenum,loc, note,date,"2", new UpdateOrder.SuccessCallback() {
 
                                 @Override
                                 public void onSuccess() {
 
 
-                                    Toast.makeText(AtyTakenOrders.this, "修改成功", Toast.LENGTH_LONG).show();
+//                                    Toast.makeText(AtyTakenOrders.this, "修改成功", Toast.LENGTH_LONG).show();
                                     Intent i = new Intent(AtyTakenOrders.this, AtyMainFrame.class);
                                     i.putExtra("page","order");
                                     startActivity(i);

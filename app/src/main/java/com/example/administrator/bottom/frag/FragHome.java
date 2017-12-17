@@ -52,7 +52,7 @@ public class FragHome extends Fragment {
         View view = inflater.inflate(R.layout.frag_home, container, false);
         get_btn = (Button) view.findViewById(R.id.get_btn);
         linearLayout = (LinearLayout) view.findViewById(R.id.take_orders);
-//        fresh();
+        fresh();
         get_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override

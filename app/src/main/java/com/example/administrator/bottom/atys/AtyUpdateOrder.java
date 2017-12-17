@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.administrator.bottom.Config;
 import com.example.administrator.bottom.R;
 import com.example.administrator.bottom.custom.OrderView;
+import com.example.administrator.bottom.frag.FragHome;
 import com.example.administrator.bottom.net.DownloadOneOrder;
 import com.example.administrator.bottom.net.DownloadTakenOrders;
 import com.example.administrator.bottom.net.Order;
@@ -176,7 +177,6 @@ public class AtyUpdateOrder extends AppCompatActivity {
                         i.putExtra("page","order");
                         startActivity(i);
                         AtyUpdateOrder.this.overridePendingTransition(R.transition.switch_slide_in_right, R.transition.switch_still);
-
                     }
                 }, new UpdateOrder.FailCallback() {
 
