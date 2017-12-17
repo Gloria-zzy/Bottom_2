@@ -22,6 +22,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 
     <!-- android:icon="@mipmap/ic_launcher" -->
     <application
@@ -60,9 +61,11 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
-        <activity android:name=".atys.AtyGenCode"></activity>
+        <activity android:name=".atys.AtyGenCode" />
+        <activity android:name=".atys.AtyTakenOrders" />
+        <activity android:name=".atys.AtyUpdateOrder"></activity>
     </application>
 
 </manifest>

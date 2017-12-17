@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView topBar;
     private TextView tabHome;
     private TextView tabGet;
-    private TextView tabPost;
+//    private TextView tabPost;
     private TextView tabMe;
 
     private FrameLayout ly_content;
@@ -60,13 +60,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        topBar = (TextView)this.findViewById(R.id.txt_top);
         tabHome = (TextView)this.findViewById(R.id.txt_home);
         tabGet = (TextView)this.findViewById(R.id.txt_get);
-        tabPost = (TextView)this.findViewById(R.id.txt_post);
+//        tabPost = (TextView)this.findViewById(R.id.txt_post);
         tabMe = (TextView)this.findViewById(R.id.txt_me);
         ly_content = (FrameLayout) findViewById(R.id.fragment_container);
 
         tabHome.setOnClickListener(this);
         tabGet.setOnClickListener(this);
-        tabPost.setOnClickListener(this);
+//        tabPost.setOnClickListener(this);
         tabMe.setOnClickListener(this);
 
     }
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void selected(){
         tabHome.setSelected(false);
         tabGet.setSelected(false);
-        tabPost.setSelected(false);
+//        tabPost.setSelected(false);
         tabMe.setSelected(false);
     }
 
@@ -122,16 +122,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
 
-            case R.id.txt_post:
-                selected();
-                tabPost.setSelected(true);
-                if(fragCommunity ==null){
-                    fragCommunity = new FragCommunity();
-                    transaction.add(R.id.fragment_container, fragCommunity);
-                }else{
-                    transaction.show(fragCommunity);
-                }
-                break;
+//            case R.id.txt_post:
+//                selected();
+////                tabPost.setSelected(true);
+//                if(fragCommunity ==null){
+//                    fragCommunity = new FragCommunity();
+//                    transaction.add(R.id.fragment_container, fragCommunity);
+//                }else{
+//                    transaction.show(fragCommunity);
+//                }
+//                break;
 
             case R.id.txt_me:
                 selected();

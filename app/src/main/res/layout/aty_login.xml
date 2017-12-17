@@ -23,7 +23,7 @@
             android:src="@drawable/item_back_black" />
 
         <ImageView
-            android:id="@+id/head"
+            android:id="@+id/iv_avatar"
             android:layout_width="80sp"
             android:layout_height="80sp"
             android:src="@drawable/item_head"
