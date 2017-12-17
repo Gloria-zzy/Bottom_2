@@ -25,23 +25,20 @@ import static com.example.administrator.bottom.Config.APP_ID;
 
 public class AtyFetch extends AppCompatActivity {
 
-    private Spinner point_spinner;
+    private Spinner time_spinner;
     private Spinner loc_spinner;
     private EditText note_edittext;
-    private EditText takenum_edittext;
     private List<String> data_list;
     private ArrayAdapter<String> arr_adapter;
-    private String point;
+    private String time;
     private String loc;
     private String note;
-    private String takenum;
 
     //UI组件初始化
     private void bindView() {
-        point_spinner = (Spinner) findViewById(R.id.point_spinner);
+        time_spinner = (Spinner) findViewById(R.id.time_spinner);
         loc_spinner = (Spinner) findViewById(R.id.loc_spinner);
         note_edittext = (EditText) findViewById(R.id.fetch_note);
-        takenum_edittext = (EditText) findViewById(R.id.tv_order_takenum);
     }
 
     @Override
@@ -56,28 +53,26 @@ public class AtyFetch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-            }
+        }
         });
 
         //数据
         data_list = new ArrayList<String>();
-        data_list.add("北门盘锦花园新生活");
-        data_list.add("北门盘锦花园内右拐第七家");
-        data_list.add("小东门外菜鸟驿站");
-        data_list.add("中苑老食堂菜鸟驿站");
+        data_list.add("18：30~19：30");
+        data_list.add("19：30~20：30");
+        data_list.add("20：30~21：30");
+        data_list.add("21：30~22：30");
 
         //适配器 android.R.layout.simple_spinner_item
         arr_adapter = new ArrayAdapter<String>(this, R.layout.item_spinner, data_list);
         //设置样式 android.R.layout.simple_spinner_dropdown_item
         arr_adapter.setDropDownViewResource(R.layout.item_spinner_dropdown);
         //加载适配器
-        point_spinner.setAdapter(arr_adapter);
+        time_spinner.setAdapter(arr_adapter);
 
         //数据
         data_list = new ArrayList<String>();
-        SharedPreferences sharedPreferences = getSharedPreferences(APP_ID, Context.MODE_PRIVATE);
-        String abr = sharedPreferences.getString(Config.ADDRESS, "");
-        data_list.add(abr);
+        data_list.add("默认地址");
         data_list.add("明德楼");
         data_list.add("文德楼");
         data_list.add("信息中心");
@@ -89,10 +84,10 @@ public class AtyFetch extends AppCompatActivity {
         //加载适配器
         loc_spinner.setAdapter(arr_adapter);
 
-        point_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        time_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                point = (String) point_spinner.getSelectedItem();
+                time = (String) time_spinner.getSelectedItem();
             }
 
             @Override
@@ -123,37 +118,31 @@ public class AtyFetch extends AppCompatActivity {
 
                 // 获得phoneNum
                 note = note_edittext.getText().toString();
-                if (note.equals("")) {
+                if(note.equals("")){
                     note = "none";
                 }
-                takenum = takenum_edittext.getText().toString();
                 SharedPreferences sharedPreferences = getSharedPreferences(APP_ID, Context.MODE_PRIVATE);
                 String phone = sharedPreferences.getString(Config.KEY_PHONE_NUM, "");
 
-                if (takenum.equals("") || takenum == null) {
-                    Toast.makeText(AtyFetch.this, "取货号不能为空！", Toast.LENGTH_LONG).show();
-                } else {
-                    new UploadOrder(phone, point, takenum, loc, note, date, new UploadOrder.SuccessCallback() {
+                new UploadOrder(phone, time, loc, note,date, new UploadOrder.SuccessCallback() {
 
-                        @Override
-                        public void onSuccess() {
+                    @Override
+                    public void onSuccess() {
 
+                        Toast.makeText(AtyFetch.this,"提交成功！", Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(AtyFetch.this, AtyMainFrame.class);
+                        i.putExtra("page","order");
+                        startActivity(i);
+                        finish();
 
-                            Toast.makeText(AtyFetch.this, "提交成功！", Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(AtyFetch.this, AtyMainFrame.class);
-                            i.putExtra("page", "order");
-                            startActivity(i);
-                            finish();
+                    }
+                }, new UploadOrder.FailCallback() {
 
-                        }
-                    }, new UploadOrder.FailCallback() {
-
-                        @Override
-                        public void onFail() {
-                            Toast.makeText(AtyFetch.this, R.string.fail_to_commit, Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
+                    @Override
+                    public void onFail() {
+                        Toast.makeText(AtyFetch.this, R.string.fail_to_commit, Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }

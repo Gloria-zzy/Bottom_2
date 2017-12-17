@@ -7,24 +7,20 @@ package com.example.administrator.bottom.net;
 public class Order {
     private String orderNum;
     private String phone;
-    private String point;
+    private String time;
     private String location;
     private String note;
     private String status;
     private String date;
-    private String takenum;
-    private String taker;
 
-    public Order(String orderNum, String phone, String point,String takenum, String location, String note, String status,String date,String taker) {
+    public Order(String orderNum, String phone, String time, String location, String note, String status,String date) {
         this.orderNum = orderNum;
         this.phone = phone;
-        this.point = point;
-        this.takenum = takenum;
+        this.time = time;
         this.location = location;
         this.note = note;
         this.status = status;
         this.date = date;
-        this.taker = taker;
     }
 
     public String getLocation() {
@@ -47,19 +43,12 @@ public class Order {
         return status;
     }
 
-    public String getPoint() {
-        return point;
+    public String getTime() {
+        return time;
     }
 
     public String getDate() {
         return date;
     }
 
-    public String getTakenum() {
-        return takenum;
-    }
-
-    public String getTaker() {
-        return taker;
-    }
 }

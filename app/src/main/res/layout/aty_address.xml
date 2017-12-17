@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/nav_color">
+        android:background="@color/blue">
 
         <ImageView
             android:id="@+id/Address_back"
@@ -37,6 +37,86 @@
         android:orientation="vertical"
         android:padding="20sp">
 
+        <!--<EditText-->
+            <!--android:id="@+id/etUserName"-->
+            <!--android:drawableLeft="@drawaitem_usr_namename"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_margin="6dp"-->
+            <!--android:singleLine="true"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:hint="请输入你的用户名"-->
+            <!--android:background="@drawable/spinner_border"-->
+            <!--android:paddingLeft="5sp"/>-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/etPassword_1"-->
+            <!--android:drawableLeft="@drawaitem_pwd/pwd"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_margin="6dp"-->
+            <!--android:singleLine="true"-->
+            <!--android:inputType="textPassword"-->
+            <!--android:hint="请输入您的密码"-->
+            <!--android:background="@drawable/spinner_border"-->
+            <!--android:paddingLeft="5sp"/>-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/etPassword_2"-->
+            <!--android:drawableLeft="@drawaitem_pwd/pwd"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_margin="6dp"-->
+            <!--android:singleLine="true"-->
+            <!--android:inputType="textPassword"-->
+            <!--android:hint="请再次输入您的密码"-->
+            <!--android:background="@drawable/spinner_border"-->
+            <!--android:paddingLeft="5sp"/>-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/etPhoneNumber"-->
+            <!--android:drawableLeft="@drawaitem_phonehone"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_margin="6dp"-->
+            <!--android:singleLine="true"-->
+            <!--android:inputTyitem_phonehone"-->
+            <!--android:hint="请输入您的手机号"-->
+            <!--android:background="@drawable/spinner_border"-->
+            <!--android:paddingLeft="5sp"/>-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/etEmail"-->
+            <!--android:drawableLeft="@drawaitem_emailmail"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_margin="6dp"-->
+            <!--android:singleLine="true"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:hint="请输入您的邮箱地址"-->
+            <!--android:background="@drawable/spinner_border"-->
+            <!--android:paddingLeft="5sp"/>-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/etAddress"-->
+            <!--android:drawableLeft="@drawaitem_houseouse"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_margin="6dp"-->
+            <!--android:singleLine="true"-->
+            <!--android:inputType="text"-->
+            <!--android:hint="请输入您的住址"-->
+            <!--android:background="@drawable/spinner_border"-->
+            <!--android:paddingLeft="5sp"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tvCode"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:layout_margin="6dp"-->
+            <!--android:hint="BiuBiu~专属代号"-->
+            <!--android:textSize="15dp"/>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +131,9 @@
             <Spinner
                 android:id="@+id/area_spinner"
                 style="@style/spinner_bar"
-                android:background="@color/transparent"/>
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <ImageView
                 android:layout_alignBottom="@+id/area_spinner"
@@ -60,15 +142,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="24dp"
-                style="@style/spinner_btn"/>
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="5sp"
-                android:background="@drawable/sp_line"
-                android:layout_alignBottom="@+id/area_spinner"
-                ></View>
-
+                style="@style/spinner_btn" />
 
         </RelativeLayout>
 
@@ -86,8 +160,7 @@
 
             <Spinner
                 android:id="@+id/building_spinner"
-                style="@style/spinner_bar"
-                android:background="@color/transparent"/>
+                style="@style/spinner_bar" />
 
             <ImageView
                 android:layout_alignBottom="@+id/building_spinner"
@@ -96,14 +169,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="24dp"
-                style="@style/spinner_btn" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="5sp"
-                android:background="@drawable/sp_line"
-                android:layout_alignBottom="@+id/building_spinner"
-                ></View>
+                style="@style/spinner_btn"/>
         </RelativeLayout>
 
         <TextView
@@ -120,26 +186,13 @@
 
             <EditText
                 android:id="@+id/room_et"
-                android:layout_height="25dp"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="20sp"
-                android:textSize="14dp"
-                android:background="@color/transparent"
+                style="@style/spinner_bar"
                 android:hint="如：118"
                 android:paddingTop="3sp"
                 android:paddingLeft="7sp"
-                android:paddingBottom="2sp"
                 android:inputType="number"
                 android:singleLine="true"/>
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="5sp"
-                android:background="@drawable/sp_line"
-                android:layout_alignBottom="@+id/room_et"
-                ></View>
         </RelativeLayout>
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">

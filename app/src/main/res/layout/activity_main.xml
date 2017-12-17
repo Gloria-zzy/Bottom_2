@@ -37,17 +37,17 @@
             style="@style/min_text"
             android:text="@string/get"/>
 
-        <!--<TextView-->
-            <!--android:id="@+id/txt_post"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="3dp"-->
-            <!--android:drawableTop="@drawable/tab_menu_deal"-->
-            <!--android:gravity="center"-->
-            <!--android:textColor="@drawable/tab_menu_deal_text"-->
-            <!--style="@style/min_text"-->
-            <!--android:text="@string/post"/>-->
+        <TextView
+            android:id="@+id/txt_post"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/tab_menu_deal"
+            android:gravity="center"
+            android:textColor="@drawable/tab_menu_deal_text"
+            style="@style/min_text"
+            android:text="@string/post"/>
 
         <TextView
             android:id="@+id/txt_me"

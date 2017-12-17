@@ -62,7 +62,7 @@ public class AtyMainFrame extends Activity implements View.OnClickListener {
             } else if (page.equals("order")) {
                 showFragOrder();
             } else if (page.equals("community")) {
-//                showFragCommunity();
+                showFragCommunity();
             } else if (page.equals("me")) {
                 showFragMe();
             } else {
@@ -77,13 +77,13 @@ public class AtyMainFrame extends Activity implements View.OnClickListener {
 //        topBar = (TextView)this.findViewById(R.id.txt_top);
         tabHome = (TextView) this.findViewById(R.id.txt_home);
         tabGet = (TextView) this.findViewById(R.id.txt_get);
-//        tabPost = (TextView) this.findViewById(R.id.txt_post);
+        tabPost = (TextView) this.findViewById(R.id.txt_post);
         tabMe = (TextView) this.findViewById(R.id.txt_me);
         ly_content = (FrameLayout) findViewById(R.id.fragment_container);
 
         tabHome.setOnClickListener(this);
         tabGet.setOnClickListener(this);
-//        tabPost.setOnClickListener(this);
+        tabPost.setOnClickListener(this);
         tabMe.setOnClickListener(this);
 
     }
@@ -92,7 +92,7 @@ public class AtyMainFrame extends Activity implements View.OnClickListener {
     public void selected() {
         tabHome.setSelected(false);
         tabGet.setSelected(false);
-//        tabPost.setSelected(false);
+        tabPost.setSelected(false);
         tabMe.setSelected(false);
     }
 
@@ -122,10 +122,8 @@ public class AtyMainFrame extends Activity implements View.OnClickListener {
                 tabHome.setSelected(true);
                 if (fragHome == null) {
                     fragHome = new FragHome();
-                    fragHome.fresh();
                     transaction.add(R.id.fragment_container, fragHome);
                 } else {
-                    fragHome.fresh();
                     transaction.show(fragHome);
                 }
                 break;
@@ -141,6 +139,17 @@ public class AtyMainFrame extends Activity implements View.OnClickListener {
                     fragOrder.fresh();
                     transaction.show(fragOrder);
 
+                }
+                break;
+
+            case R.id.txt_post:
+                selected();
+                tabPost.setSelected(true);
+                if (fragCommunity == null) {
+                    fragCommunity = new FragCommunity();
+                    transaction.add(R.id.fragment_container, fragCommunity);
+                } else {
+                    transaction.show(fragCommunity);
                 }
                 break;
 
@@ -185,16 +194,16 @@ public class AtyMainFrame extends Activity implements View.OnClickListener {
         transaction.commit();
     }
 
-//    public void showFragCommunity() {
-//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//        hideAllFragment(transaction);
-//        selected();
-//        tabPost.setSelected(true);
-//        fragCommunity = new FragCommunity();
-//        transaction.add(R.id.fragment_container, fragCommunity);
-//        transaction.show(fragCommunity);
-//        transaction.commit();
-//    }
+    public void showFragCommunity() {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        hideAllFragment(transaction);
+        selected();
+        tabPost.setSelected(true);
+        fragCommunity = new FragCommunity();
+        transaction.add(R.id.fragment_container, fragCommunity);
+        transaction.show(fragCommunity);
+        transaction.commit();
+    }
 
     public void showFragMe() {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

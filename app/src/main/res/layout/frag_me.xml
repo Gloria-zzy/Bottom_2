@@ -3,7 +3,6 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
     android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,8 +16,8 @@
             android:background="#f7eef3"
             android:orientation="horizontal">
 
-            <com.example.administrator.bottom.custom.ImageViewPlus
-                android:id="@+id/iv_avatar"
+            <ImageView
+                android:id="@+id/head"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -27,7 +26,6 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="50dp"
                 android:layout_marginStart="50dp"
-                style=""
                 android:src="@drawable/item_head" />
             <!--
                 android:layout_marginLeft="40dp"
@@ -43,8 +41,8 @@
                 android:layout_marginLeft="28dp"
 
                 android:layout_marginStart="28dp"
-                android:layout_toEndOf="@+id/iv_avatar"
-                android:layout_toRightOf="@+id/iv_avatar"
+                android:layout_toEndOf="@+id/head"
+                android:layout_toRightOf="@+id/head"
                 android:text="未登录"
                 android:textSize="20dp" />
 
@@ -53,12 +51,10 @@
 
         <LinearLayout style="@style/wrap_layout">
 
-            <LinearLayout
-                android:id="@+id/address_mng"
-                style="@style/top_layout">
+            <LinearLayout style="@style/top_layout">
 
                 <TextView
-
+                    android:id="@+id/address_mng"
                     style="@style/usertext"
                     android:text="地址管理" />
 
@@ -67,28 +63,22 @@
 
             <View style="@style/bg_line" />
 
-            <LinearLayout
-                android:id="@+id/tv_ic"
-                style="@style/mid_layout">
+            <LinearLayout style="@style/mid_layout">
 
                 <TextView
-
                     style="@style/usertext"
-                    android:text="修改头像" />
+                    android:text="我的资料" />
 
                 <ImageView style="@style/img_arrow" />
             </LinearLayout>
 
             <View style="@style/bg_line" />
 
-            <LinearLayout
-                android:id="@+id/tv_taken_orders"
-                style="@style/bottom_layout">
+            <LinearLayout style="@style/bottom_layout">
 
                 <TextView
-
                     style="@style/usertext"
-                    android:text="已抢订单" />
+                    android:text="消息通知" />
 
                 <ImageView style="@style/img_arrow" />
             </LinearLayout>
@@ -98,12 +88,10 @@
 
         <LinearLayout style="@style/wrap_layout">
 
-            <LinearLayout
-                android:id="@+id/scanner"
-                style="@style/single_layout">
+            <LinearLayout style="@style/single_layout">
 
                 <TextView
-
+                    android:id="@+id/scanner"
                     style="@style/usertext"
                     android:text="扫描二维码" />
 

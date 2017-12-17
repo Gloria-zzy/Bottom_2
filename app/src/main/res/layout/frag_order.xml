@@ -3,7 +3,6 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
     android:fillViewport="true">
 
     <LinearLayout
@@ -20,6 +19,16 @@
             android:orientation="vertical">
 
 
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/searchview_line"
+                android:gravity="center"
+                android:queryHint="@string/search_qryHint"
+                android:textSize="18sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -34,6 +43,14 @@
                     android:text="当前订单"
                     android:id="@+id/page_current"
                     android:gravity="center"/>
+                <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--style="@style/title_text"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="发现"-->
+                    <!--android:id="@+id/page2"-->
+                    <!--android:gravity="center"/>-->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -49,19 +66,58 @@
                 android:background="#68AE94"/>
             <android.support.v4.view.ViewPager
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/order_pager" >
+                android:layout_height="match_parent"
+                android:id="@+id/order_pager" />
 
-                <ScrollView
-                    android:id="@+id/frag_order_scrollview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <!--<com.example.administrator.bottom.custom.Orderview-->
+            <!--android:id="@+id/order"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
 
-                </ScrollView>
+            <!--</com.example.administrator.bottom.custom.Orderview>-->
 
-            </android.support.v4.view.ViewPager>
 
         </LinearLayout>
 
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_margin="7sp"-->
+            <!--android:gravity="center">-->
+
+            <!--<View-->
+                <!--android:layout_width="100sp"-->
+                <!--android:layout_height="1dip"-->
+                <!--android:background="#000"-->
+                <!--android:padding="1dip"-->
+                <!--android:layout_gravity="center_vertical"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="10sp"-->
+                <!--android:layout_marginRight="10sp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:text="历史订单"/>-->
+
+            <!--<View-->
+                <!--android:layout_width="100sp"-->
+                <!--android:layout_height="1dip"-->
+                <!--android:background="#000"-->
+                <!--android:padding="1dip"-->
+                <!--android:layout_gravity="center_vertical"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/history_order"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/border_clo"-->
+            <!--android:orientation="vertical">-->
+
+
+        <!--</LinearLayout>-->
     </LinearLayout>
 </ScrollView>
